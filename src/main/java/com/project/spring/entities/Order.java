@@ -44,6 +44,14 @@ public class Order implements Serializable {
         this.client = client;
     }
     
+    public Double getTotal(){
+        Double total = 0.0;
+        for(OrderItem item: this.items) {
+            total+= item.getSubTotal();
+        }
+        return total;
+    }
+    
     public Integer getId() {
         return id;
     }
