@@ -12,15 +12,15 @@ import java.util.Optional;
 public class UserService {
     
     @Autowired
-    private UserRepository personRepository;
+    private UserRepository userRepository;
     
     public List<User> findAll() {
-        return personRepository.findAll();
+        return userRepository.findAll();
     }
     
     public User findById(Integer id){
-        Optional<User> person = personRepository.findById(id);
-        return person.get();
+        Optional<User> user = userRepository.findById(id);
+        return user.get();
     }
     
 }

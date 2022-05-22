@@ -1,7 +1,7 @@
 package com.project.spring.resources;
 
-import com.project.spring.entities.User;
-import com.project.spring.services.UserService;
+import com.project.spring.entities.Order;
+import com.project.spring.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
-public class UserResources {
+@RequestMapping("/orders")
+public class OrderResources {
 
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
     
     @GetMapping()
     public ResponseEntity<List> findAll(){
-         return ResponseEntity.ok().body(userService.findAll());
+         return ResponseEntity.ok().body(orderService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id){
-        return ResponseEntity.ok().body(userService.findById(id));
+    public ResponseEntity<Order> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(orderService.findById(id));
     }
 
 }
