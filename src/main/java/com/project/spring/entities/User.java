@@ -1,14 +1,14 @@
 package com.project.spring.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Person implements Serializable {
+@Table(name = "tb_user")
+public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +19,13 @@ public class Person implements Serializable {
     private String phone;
     private String password;
     
-    public Person() {
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+    
+    public User() {
     }
     
-    public Person(Integer id, String name, String email, String phone, String password) {
+    public User(Integer id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -70,11 +73,15 @@ public class Person implements Serializable {
         this.password = password;
     }
     
+    public List<Order> getOrders() {
+        return orders;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Person user = (Person) o;
+        User user = (User) o;
         return Objects.equals(this.getId(), user.getId());
     }
     

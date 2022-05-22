@@ -1,7 +1,7 @@
 package com.project.spring.resources;
 
-import com.project.spring.entities.Person;
-import com.project.spring.services.PersonService;
+import com.project.spring.entities.User;
+import com.project.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +13,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/persons")
-public class PersonResources {
+public class UserResources {
 
     @Autowired
-    private PersonService personService;
+    private UserService userService;
     
     @GetMapping()
     public ResponseEntity<List> findAll(){
-         return ResponseEntity.ok().body(personService.findAll());
+         return ResponseEntity.ok().body(userService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Person> findById(@PathVariable Integer id){
-        return ResponseEntity.ok().body(personService.findById(id));
+    public ResponseEntity<User> findById(@PathVariable Integer id){
+        return ResponseEntity.ok().body(userService.findById(id));
     }
 
 }
