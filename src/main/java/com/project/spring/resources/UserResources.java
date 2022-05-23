@@ -33,5 +33,10 @@ public class UserResources {
     public ResponseEntity<User> findById(@PathVariable Integer id){
         return ResponseEntity.ok().body(userService.findById(id));
     }
-
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id){
+        this.userService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
