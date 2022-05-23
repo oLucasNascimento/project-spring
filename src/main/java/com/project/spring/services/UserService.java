@@ -31,4 +31,16 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
     
+    public User updateUser(Integer id, User user) {
+        User newUser = this.userRepository.getOne(id);
+        uptadeData(newUser, user);
+        return this.userRepository.save(newUser);
+    }
+    
+    private void uptadeData(User newUser, User user) {
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPhone(user.getPhone());
+    }
+    
 }
